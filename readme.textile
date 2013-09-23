@@ -1,6 +1,6 @@
 Grbl - An embedded g-code interpreter and motion-controller for the Arduino Mega2560 microcontroller
 
-This Fork is an updated grbl v0.8 for the Arduino Mega2560.
+This Fork is an updated grbl v0.81 for the Arduino Mega2560.
 
 - This fork is still experimental and more testing is still required (anybody is welcome to help)
 
