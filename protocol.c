@@ -113,7 +113,9 @@ void protocol_status_report()
 void protocol_init() 
 {
   // Print grbl initialization message
-  printPgmString(PSTR("\r\nMega2560 Grbl " GRBL_VERSION));
+  // Split the init message to imporove campatability with Java apps looking for the GRBL version using REGEX
+  printPgmString(PSTR("\r\nMega2560"));
+  printPgmString(PSTR("\r\nGrbl " GRBL_VERSION));
   printPgmString(PSTR("\r\n'$' to dump current settings\r\n"));
   status_message(0);
 
