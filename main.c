@@ -63,7 +63,8 @@ int main(void)
       // grbl is moving the machine.
 /// by LETARTARE 3-> 4
       int32_t last_position[4];
-      double last_coord_system[N_COORDINATE_SYSTEM][3];
+      double last_coord_system[N_COORDINATE_SYSTEM][4];
+/// <-
       memcpy(last_position, sys.position, sizeof(sys.position)); // last_position[] = sys.position[]
       memcpy(last_coord_system, sys.coord_system, sizeof(sys.coord_system)); // last_coord_system[] = sys.coord_system[]
 

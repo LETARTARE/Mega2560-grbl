@@ -79,9 +79,9 @@ typedef struct {
   double coord_system[N_COORDINATE_SYSTEM][4]; // Work coordinate systems (G54+). Stores offset from
   															 // absolute machine position in mm.
                                  // Rows: Work system number (0=G54,1=G55,...5=G59), Columns: XYZ Offsets
-/// by LETARTARE 3-> 4
   double coord_offset[4];        // Retains the G92 coordinate offset (work coordinates) relative to
                                  // machine zero in mm.
+/// <-
 
   volatile uint8_t cycle_start;  // Cycle start flag. Set by stepper subsystem or main program.
   volatile uint8_t execute;      // Global system runtime executor bitflag variable. See EXEC bitmasks.

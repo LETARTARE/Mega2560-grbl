@@ -38,6 +38,7 @@ settings_t settings;
 typedef struct {
 /// LETARTARE : 3 -> 4
   double steps_per_mm[4];
+/// <-
   uint8_t microsteps;
   uint8_t pulse_microseconds;
   double default_feed_rate;

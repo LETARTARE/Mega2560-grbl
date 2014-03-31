@@ -58,6 +58,7 @@ static void homing_cycle(bool x_axis, bool y_axis, bool z_axis, bool c_axis, int
   // an equal distance over each time step until they hit a limit switch, aka dogleg.
 /// by LETARTARE   3 -> 4
   uint32_t steps[4];
+/// <-
   clear_vector(steps);
   if (x_axis) { steps[X_AXIS] = lround(settings.steps_per_mm[X_AXIS]); }
   if (y_axis) { steps[Y_AXIS] = lround(settings.steps_per_mm[Y_AXIS]); }
