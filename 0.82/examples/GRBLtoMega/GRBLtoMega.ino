@@ -16,7 +16,8 @@
 	Supported hardware:
 		Arduino Mega 2560 (Limited Testing)
     Supported sofware
-        grbl 0.82 : https://github.com/LETARTARE/Mega2560-grbl-0.81
+        grbl 0.82 :
+        https://github.com/LETARTARE/Mega2560-grbl-0.81/devArduino/0.82
 
 */
 

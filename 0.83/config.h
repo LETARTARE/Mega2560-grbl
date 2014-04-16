@@ -22,7 +22,7 @@
 #ifndef config_h
 #define config_h
 
-/// LETARTARE 29/03-2014
+/// LETARTARE 29/03/2014
 #define __AVR_ATmega2560__
  /// <-
 // IMPORTANT: Any changes here requires a full re-compiling of the source code to propagate them.
@@ -69,22 +69,41 @@
 //#define HOME_C
 
 #define SPINDLE_ENABLE_DDR 	DDRH
-#define SPINDLE_ENABLE_PORT 	PORTH
+#define SPINDLE_ENABLE_PORT PORTH
 #define SPINDLE_ENABLE_BIT 	3  //  MEGA2560 PWM Pin 6
+///---> LETARTARE 16/04/2014
+// SPINDLE_ENABLE_ACTIVE: Set to 0 for active low spindle enable or 1
+// for active high enable.
+#define SPINDLE_ENABLE_ACTIVE  0
+///<---
 
 #define SPINDLE_DIRECTION_DDR DDRC
 #define SPINDLE_DIRECTION_PORT PORTC
 #define SPINDLE_DIRECTION_BIT 1  //  MEGA2560 Digital Pin 36
+///---> LETARTARE 16/04/2014
+// SPINDLE_DIRECTION_ACTIVE: Set to 0 for active low spindle direction or 1
+// for active high enable.
+#define SPINDLE_DIRECTION_ACTIVE  1
+///<---
 
 #define COOLANT_FLOOD_DDR 	DDRC
 #define COOLANT_FLOOD_PORT 	PORTC
 #define COOLANT_FLOOD_BIT	0	// MEGA2560 Digital Pin 37
+///---> LETARTARE 16/04/2014
+// COOLANT_FLOOD_ACTIVE: Set to 0 for active low flood enable or 1
+// for active high enable.
+#define COOLANT_FLOOD_ACTIVE  0
+///<---
 
 #define ENABLE_M7 // ENABLED BY DEFAULT: Comment out to disable
 #ifdef ENABLE_M7
 #define COOLANT_MIST_DDR   	DDRC
-#define COOLANT_MIST_PORT   	PORTC
+#define COOLANT_MIST_PORT   PORTC
 #define COOLANT_MIST_BIT  	2 // MEGA2560 Digital Pin 35
+//---> LETARTARE 16/04/2014
+// COOLANT_MIST_ACTIVE: Set to 0 for active low mist enable or 1
+// for active high enable.
+#define COOLANT_MIST_ACTIVE  0
 #endif
 
 // Define runtime command special characters. These characters are 'picked-off' directly from the

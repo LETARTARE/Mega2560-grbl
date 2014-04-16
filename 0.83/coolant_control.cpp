@@ -31,8 +31,10 @@ void coolant_init()
 {
   current_coolant_mode = COOLANT_DISABLE;
   #ifdef ENABLE_M7
+    // Configure as output pin.
     COOLANT_MIST_DDR |= (1 << COOLANT_MIST_BIT);
   #endif
+  // Configure as output pin.
   COOLANT_FLOOD_DDR |= (1 << COOLANT_FLOOD_BIT);
   coolant_stop();
 }
@@ -40,9 +42,23 @@ void coolant_init()
 void coolant_stop()
 {
   #ifdef ENABLE_M7
-    COOLANT_MIST_PORT &= ~(1 << COOLANT_MIST_BIT);
+///---> LETARTARE 16/04/2014
+     #if COOLANT_MIST_ACTIVE == 1
+      // Set pin to low to stop.
+        COOLANT_MIST_PORT &= ~(1 << COOLANT_MIST_BIT);
+     #else
+     // Set pin to high to stop.
+        COOLANT_MIST_PORT |= (1 << COOLANT_MIST_BIT);
+     #endif
   #endif
-  COOLANT_FLOOD_PORT &= ~(1 << COOLANT_FLOOD_BIT);
+  #if COOLANT_FLOOD_ACTIVE == 1
+    // Set pin to low to stop.
+    COOLANT_FLOOD_PORT &= ~(1 << COOLANT_FLOOD_BIT);
+  #else
+    // Set pin to high to stop.
+    COOLANT_FLOOD_PORT |= (1 << COOLANT_FLOOD_BIT);
+  #endif
+///<---
 }
 
 
@@ -51,13 +67,32 @@ void coolant_run(uint8_t mode)
   if (mode != current_coolant_mode)
   { 
     plan_synchronize(); // Ensure coolant turns on when specified in program.
-    if (mode == COOLANT_FLOOD_ENABLE) { 
-      COOLANT_FLOOD_PORT |= (1 << COOLANT_FLOOD_BIT);
-    #ifdef ENABLE_M7  
-      } else if (mode == COOLANT_MIST_ENABLE) {
-          COOLANT_MIST_PORT |= (1 << COOLANT_MIST_BIT);
+    if (mode == COOLANT_FLOOD_ENABLE) {
+///---> LETARTARE 16/04/2014
+    #if COOLANT_FLOOD_ACTIVE == 1
+        // Set pin to high to run.
+        COOLANT_FLOOD_PORT |= (1 << COOLANT_FLOOD_BIT);
+    #else
+        // Set pin to low to run.
+        COOLANT_FLOOD_PORT &= ~(1 << COOLANT_FLOOD_BIT);
     #endif
-    } else {
+///<---
+    #ifdef ENABLE_M7  
+    }
+    else
+    if (mode == COOLANT_MIST_ENABLE) {
+///---> LETARTARE 16/04/2014
+        #if COOLANT_MIST_ACTIVE == 1
+        // Set pin to high to run.
+        COOLANT_MIST_PORT |= (1 << COOLANT_MIST_BIT);
+        #else
+        // Set pin to low to run.
+        COOLANT_MIST_PORT &= ~(1 << COOLANT_MIST_BIT);
+        #endif
+///<---
+    #endif
+    }
+    else {
       coolant_stop();
     }
     current_coolant_mode = mode;

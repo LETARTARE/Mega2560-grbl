@@ -33,14 +33,32 @@ static uint8_t current_direction;
 void spindle_init()
 {
   current_direction = 0;
+  // Configure as output pin.
   SPINDLE_ENABLE_DDR |= (1<<SPINDLE_ENABLE_BIT);
-  SPINDLE_DIRECTION_DDR |= (1<<SPINDLE_DIRECTION_BIT);  
+  // Configure as output pin.
+  SPINDLE_DIRECTION_DDR |= (1<<SPINDLE_DIRECTION_BIT);
   spindle_stop();
 }
 
 void spindle_stop()
 {
-  SPINDLE_ENABLE_PORT &= ~(1<<SPINDLE_ENABLE_BIT);
+///---> LETARTARE 16/04/2014
+#if SPINDLE_ENABLE_ACTIVE == 1
+    // Set pin to low to stop.
+    SPINDLE_ENABLE_PORT &= ~(1<<SPINDLE_ENABLE_BIT);
+#else
+    // Set pin to high to stop.
+    SPINDLE_ENABLE_PORT |= (1<<SPINDLE_ENABLE_BIT);
+#endif
+
+#if SPINDLE_DIRECTION_ACTIVE == 1
+        // Set pin to high to run.
+    SPINDLE_DIRECTION_PORT |= (1<<SPINDLE_DIRECTION_BIT);
+#else
+        // Set pin to low to run.
+    SPINDLE_DIRECTION_PORT &= ~(1<<SPINDLE_DIRECTION_BIT);
+#endif
+/// <---
 }
 
 void spindle_run(int8_t direction, uint16_t rpm) 
@@ -49,39 +67,63 @@ void spindle_run(int8_t direction, uint16_t rpm)
     plan_synchronize();
     if (direction) {
       if(direction > 0) {
+///---> LETARTARE 16/04/2014
+      #if SPINDLE_DIRECTION_ACTIVE == 1
+        // Set pin to high to run.
+        SPINDLE_DIRECTION_PORT |= (1<<SPINDLE_DIRECTION_BIT);
+      #else
+        // Set pin to low to run.
         SPINDLE_DIRECTION_PORT &= ~(1<<SPINDLE_DIRECTION_BIT);
-      } else {
-        SPINDLE_DIRECTION_PORT |= 1<<SPINDLE_DIRECTION_BIT;
+      #endif
+///<---
       }
-      SPINDLE_ENABLE_PORT |= 1<<SPINDLE_ENABLE_BIT;
-    } else {
+      else {
+///---> LETARTARE 16/04/2014
+      #if SPINDLE_DIRECTION_ACTIVE == 1
+        // Set pin to low.
+        SPINDLE_DIRECTION_PORT &= ~(1<<SPINDLE_DIRECTION_BIT);
+      #else
+        // Set pin to high.
+        SPINDLE_DIRECTION_PORT |= (1<<SPINDLE_DIRECTION_BIT);
+      #endif
+      }
+    #if SPINDLE_ENABLE_ACTIVE == 1
+        // Set pin to high to run.
+        SPINDLE_ENABLE_PORT |= (1<<SPINDLE_ENABLE_BIT);
+    #else
+        // Set pin to low to run.
+        SPINDLE_ENABLE_PORT &= ~(1<<SPINDLE_ENABLE_BIT);
+    #endif
+///<---
+    }
+    else {
       spindle_stop();     
     }
     current_direction = direction;
-    }
+  }
 if (settings.spindle_pwm == 1) {
   if (rpm > settings.max_spindle) {
     rpm = settings.max_spindle;
-    }
+  }
   if (direction == 0) {
     rpm = 0;
     OCR4A = 0;
     TCCR4A = 0; //reset clock values
     TCCR4B = 0; //reset clock values
-    }  
+  }
   else if (rpm > 0 ) {
     TCCR4A = 0; //reset clock values
     TCCR4B = 0; //reset clock values
     TCCR4A = (1<<COM4A1) | (1<<WGM42) | (1<<WGM41) | (1<<WGM40); //10 bit Fast PWM
     TCCR4B = (1<<CS41); //set prescaler to 8
     OCR4A = rpm / settings.max_spindle * 1023;
-    }
+  }
   else {
     TCCR4A = 0; //reset clock values
     TCCR4B = 0; //reset clock values
     TCCR4A = (1<<COM4A1) | (1<<WGM42) | (1<<WGM41) | (1<<WGM40); //10 bit Fast PWM
     TCCR4B = (1<<CS41); //set prescaler to 8
     OCR4A = settings.default_spindle / settings.max_spindle * 1023;
-    }
+  }
 }     
 }
