@@ -12,11 +12,12 @@
 */
 
 /*
-    by LETARTARE 
+    by LETARTARE 17/04/2014
 	Supported hardware:
 		Arduino Mega 2560 (Limited Testing)
-    Supported sofware
-        grbl 0.82 : https://github.com/LETARTARE/Mega2560-grbl-0.81
+    Supported sofware :
+        grbl 0.83
+        https://github.com/LETARTARE/Mega2560-grbl-0.81/devArduino/0.83
 
 */
 
