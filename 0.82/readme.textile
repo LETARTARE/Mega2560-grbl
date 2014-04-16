@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 This version is an adaptation of "Mega2560-grbl-0.81" work with Arduino-xxx.
-You simply copy the "MegaGrbl82" directory in "Arduino-xxx/libraries".
+You simply rename "0.82" to "MegaGrbl82" and copy the directory "Arduino-xxx/libraries".
 
 LETARTARE
 //------------------------------------------------------------------------------
