@@ -1,0 +1,116 @@
+Change.log   Suivi de l'évolution
+
+//------------------------------------------------------------------------------
+<<== 0.81 récupérée sur internet : version 'GrblElite-0.81' for MEGA2560
+Sept. 23, 2013
+
+This code is a copy of an old website disappeared Sept. 19, 2013
+https://github.com/EliteEng/grbl who recently reappeared in but with a copy of Grbl-8c
+which only manage three axes. These two versions are different.
+I just corrected the errors array dimensions.
+
+This Fork is an updated grbl v0.81 for the Arduino Mega2560.
+
+==>> 0.81
+//------------------------------------------------------------------------------
+<<== 0.81
+March 31, 2014
+
+on crée une bibliothèque pour travailler avec Arduino-105x
+
+==>> 0.82
+//------------------------------------------------------------------------------
+<<== 0.82
+Apr 02, 2014
+
+- on publie dans un autre dépot "Grbl_with_Arduino"
+
+Apr 16, 2014
+- on corrige diverses erreurs retrouvées ...
+
+Apr 17, 2014
+- add choice of active level 0 or 1 for Spindle Enable, Spindle Dir, Coolant, Mist
+
+==>> 0.83
+//------------------------------------------------------------------------------
+<<== 0.83
+19-04-2014
+
+The appointed axis C (about Z) is modified in A (around X)
+by infobarquée and icare ? french forum “http://forum.arduino.cc”
+
+Modified files:
+- gcode.cpp
+- limits.cpp
+- main.cpp
+- nuts_bolts.h + N_AXIS
+- nuts_bolts.cpp
+- planner.cpp
+- protocol.cpp
+- settings.cpp
+- stepper.cpp
+
+==>> 0.84
+//------------------------------------------------------------------------------
+<<== 0.84
+20-04-2014
+
+- on ajoute le fichier "0.8c:pin.map.h"
+- on translate dans "pin_map.h" tous les "#define" du début de "config.h"
+- petits ajustements ...
+
+==>> 0.841
+//------------------------------------------------------------------------------
+<== 0.841
+21-04-2014
+
+- ajout de "0.8c:defaults.h"
+- ajout dans "nuts_bolts.h" de "#include "defaults.h"  (seul à l'utiliser dans 0.8c)
+--> la compilation ne signale aucun problème
+
+- il faut utiliser les références de machines pré-définies ex : DEFAULTS_GENERIC
+    et le rajouter dans "config.h"
+- on ajoute dans "defaults.h" la configuration
+        #ifdef DEFAULTS_0.84x
+        ... // qui récupère les #define de "settings.cpp" dans lequel on les mets
+            // en remarque
+        #endif
+    et dans "config.h"
+        #define DEFAULTS_0.84x
+--> la compilation ne signale aucun problème
+    - "nut_bolts.*" et settings.cpp" utilisent les définitions de la machine
+
+ - on change dans plusieurs fichiers : 4 -> N_AXIS
+ - dans "limits.cpp"
+    1- un oubli de l'axe A  + a_axis
+        double ds = step_event_count/sqrt(x_axis + y_axis + z_axis + a_axis);
+    2- erreur counter_x -> counter_a
+
+--> la compilation ne signale aucun problème
+
+ - dans gcode.cpp on ajoute
+    - dans switch(letter)
+        /// 842
+        "case 'G': case 'M': case 'N': break; // Ignore command statements and line numbers"
+        /// <-
+        /// LETARTARE 'C' -> 'A' and 842 : default
+        case 'A': target[A_AXIS] = to_millimeters(value); bit_true(axis_words,bit(A_AXIS)); break;
+        default: FAIL(STATUS_UNSUPPORTED_STATEMENT);
+        // <-
+    - on transfère les #define des groupes et la déclaration de structure dans le
+     "gcode.h"
+
+--> la compilation ne signale aucun problème
+
+ - on ajoute les deux fichiers "0.8c:report.*"  qui remplace l'écriture en sortie
+    on doit mettre en commentaires de nombreuse lignes car des champs ne sont pas
+    définies
+    ensuite il faut regarder ce que cela  remplace pour l'utiliser
+
+--> la compilation ne signale aucun problème
+
+==> 0.842
+//------------------------------------------------------------------------------
+
+
+
