@@ -1,7 +1,7 @@
-Change.log   Suivi de l'évolution
+Change.log
 
 //------------------------------------------------------------------------------
-<<== 0.81 récupérée sur internet : version 'GrblElite-0.81' for MEGA2560
+<<== 0.81 recovered on the internet : version 'GrblElite-0.81' for MEGA2560
 Sept. 23, 2013
 
 This code is a copy of an old website disappeared Sept. 19, 2013
@@ -16,17 +16,16 @@ This Fork is an updated grbl v0.81 for the Arduino Mega2560.
 <<== 0.81
 March 31, 2014
 
-on crée une bibliothèque pour travailler avec Arduino-105x
+we create a library to work with Arduino-105x
 
 ==>> 0.82
 //------------------------------------------------------------------------------
 <<== 0.82
 Apr 02, 2014
-
-- on publie dans un autre dépot "Grbl_with_Arduino"
+- Are published in another repository "Grbl_with_Arduino"
 
 Apr 16, 2014
-- on corrige diverses erreurs retrouvées ...
+- Correcting various errors found ...
 
 Apr 17, 2014
 - add choice of active level 0 or 1 for Spindle Enable, Spindle Dir, Coolant, Mist
@@ -55,41 +54,41 @@ Modified files:
 <<== 0.84
 20-04-2014
 
-- on ajoute le fichier "0.8c:pin.map.h"
-- on translate dans "pin_map.h" tous les "#define" du début de "config.h"
-- petits ajustements ...
+- Add file "0.8c:pin.map.h"
+- We translate into "pin_map.h" all "# define" the beginning of "config.h"
+- Small adjustments ...
 
 ==>> 0.841
 //------------------------------------------------------------------------------
 <== 0.841
 21-04-2014
 
-- ajout de "0.8c:defaults.h"
-- ajout dans "nuts_bolts.h" de "#include "defaults.h"  (seul à l'utiliser dans 0.8c)
---> la compilation ne signale aucun problème
+- Added "0.8c: defaults.h"
+- Adds "nuts_bolts.h" from "# include" defaults.h "(only use in 0.8c)
+-> Compile reports no problems
 
-- il faut utiliser les références de machines pré-définies ex : DEFAULTS_GENERIC
-    et le rajouter dans "config.h"
-- on ajoute dans "defaults.h" la configuration
+- You must use the pre-defined references machine example: DEFAULTS_GENERIC
+     and add in "config.h"
+- Add in "defaults.h" configuration
         #ifdef DEFAULTS_0.84x
-        ... // qui récupère les #define de "settings.cpp" dans lequel on les mets
-            // en remarque
+        ... // That retrieves the "# define" from "settings.cpp" in which they
+            // are put in notes
         #endif
-    et dans "config.h"
+   and "config.h"
         #define DEFAULTS_0.84x
---> la compilation ne signale aucun problème
-    - "nut_bolts.*" et settings.cpp" utilisent les définitions de la machine
+-> Compile reports no problems
 
- - on change dans plusieurs fichiers : 4 -> N_AXIS
- - dans "limits.cpp"
-    1- un oubli de l'axe A  + a_axis
-        double ds = step_event_count/sqrt(x_axis + y_axis + z_axis + a_axis);
-    2- erreur counter_x -> counter_a
+     - "Nut_bolts.*" and "settings.cpp" use the definitions of the machine
 
---> la compilation ne signale aucun problème
+ - change multiple files: 4 -> N_AXIS
+  - In "limits.cpp"
+     1 - forgetting the axis A + a_axis
+         "double ds = step_event_count/sqrt(x_axis + y_axis + z_axis + a_axis);"
+     2 - error counter_x -> counter_a
+-> Compile reports no problems
 
- - dans gcode.cpp on ajoute
-    - dans switch(letter)
+  - Adding in gcode.cpp
+     - In switch (letter)
         /// 842
         "case 'G': case 'M': case 'N': break; // Ignore command statements and line numbers"
         /// <-
@@ -97,17 +96,16 @@ Modified files:
         case 'A': target[A_AXIS] = to_millimeters(value); bit_true(axis_words,bit(A_AXIS)); break;
         default: FAIL(STATUS_UNSUPPORTED_STATEMENT);
         // <-
-    - on transfère les #define des groupes et la déclaration de structure dans le
-     "gcode.h"
+   - Groups and the structure declaration transferring the "# define" in the
+      "gcode.h"
 
---> la compilation ne signale aucun problème
+-> Compile reports no problems
 
- - on ajoute les deux fichiers "0.8c:report.*"  qui remplace l'écriture en sortie
-    on doit mettre en commentaires de nombreuse lignes car des champs ne sont pas
-    définies
-    ensuite il faut regarder ce que cela  remplace pour l'utiliser
+  - Add two files replaces writing output "0.8c:report.*"  must be put in
+    comments of numerous lines because fields are not defined then we must look
+    at what it replaces to use
 
---> la compilation ne signale aucun problème
+-> Compile reports no problems
 
 ==> 0.842
 //------------------------------------------------------------------------------
