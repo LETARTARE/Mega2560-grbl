@@ -1,6 +1,10 @@
 //------------------------------------------------------------------------------
 These versions 0.8xx are adaptation of "Mega2560-grbl-0.81" work with Arduino-xxx
 
+v0.843
+    - configurable in "defaults.h" :
+        - axis A rotary  in [-360.0..360.0] degrees
+        - machine definitions : steps motor, pitch screw, microsteps, worm gear ratio
 
 v0.842
     - modification of the structure to be like current grbl-8c, but with 4 axes
@@ -24,12 +28,3 @@ v0.81
     - is a copy of an old website disappeared Sept. 19, 2013
         https://github.com/EliteEng/grbl
        who recently reappeared in but with a copy of official Grbl-0.8c .
-
-
-
-
-
-
-
-
-
