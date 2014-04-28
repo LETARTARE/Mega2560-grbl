@@ -131,7 +131,7 @@ uint8_t gc_execute_line(char *line)
           case 4: non_modal_action = NON_MODAL_DWELL; break;
           case 10: non_modal_action = NON_MODAL_SET_COORDINATE_DATA; break;
           case 17: select_plane(X_AXIS, Y_AXIS, Z_AXIS); break;
-          case 18: select_plane(X_AXIS, Z_AXIS, Y_AXIS); break;
+          case 18: select_plane(Z_AXIS, X_AXIS, Y_AXIS); break;
           case 19: select_plane(Y_AXIS, Z_AXIS, X_AXIS); break;
           case 20: gc.inches_mode = true; break;
           case 21: gc.inches_mode = false; break;
@@ -282,28 +282,29 @@ uint8_t gc_execute_line(char *line)
       break;
     case NON_MODAL_SET_COORDINATE_DATA:
       int_value = trunc(p); // Convert p value to int.
-      if ((l != 2 && l != 20) || (int_value < 1 || int_value > N_COORDINATE_SYSTEM)) { // L2 and L20. P1=G54, P2=G55, ... 
+      if ((l != 2 && l != 20) || (int_value < 0 || int_value > N_COORDINATE_SYSTEM)) { // L2 and L20. P1=G54, P2=G55, ... 
         FAIL(STATUS_UNSUPPORTED_STATEMENT); 
       } else if (!axis_words && l==2) { // No axis words.
         FAIL(STATUS_INVALID_STATEMENT);
       } else {
-        int_value--; // Adjust P index to EEPROM coordinate data indexing.
-        if (l == 20) {
-          settings_write_coord_data(int_value,gc.position);
-          // Update system coordinate system if currently active.
-          if (gc.coord_select == int_value) { memcpy(gc.coord_system,gc.position,sizeof(gc.position)); }
-        } else {
-          float coord_data[N_AXIS];
-          if (!settings_read_coord_data(int_value,coord_data)) { return(STATUS_SETTING_READ_FAIL); }
-          // Update axes defined only in block. Always in machine coordinates. Can change non-active system.
-          uint8_t i;
-          for (i=0; i<N_AXIS; i++) { // Axes indices are consistent, so loop may be used.
-            if ( bit_istrue(axis_words,bit(i)) ) { coord_data[i] = target[i]; }
+        if (int_value > 0) { int_value--; } // Adjust P1-P6 index to EEPROM coordinate data indexing.
+        else { int_value = gc.coord_select; } // Index P0 as the active coordinate system
+        float coord_data[N_AXIS];
+        if (!settings_read_coord_data(int_value,coord_data)) { return(STATUS_SETTING_READ_FAIL); }
+        uint8_t i;
+        // Update axes defined only in block. Always in machine coordinates. Can change non-active system.
+        for (i=0; i<N_AXIS; i++) { // Axes indices are consistent, so loop may be used.
+          if (bit_istrue(axis_words,bit(i)) ) {
+            if (l == 20) {
+              coord_data[i] = gc.position[i]-target[i]; // L20: Update axis current position to target
+            } else {
+              coord_data[i] = target[i]; // L2: Update coordinate system axis
+            }
           }
-          settings_write_coord_data(int_value,coord_data);
-          // Update system coordinate system if currently active.
-          if (gc.coord_select == int_value) { memcpy(gc.coord_system,coord_data,sizeof(coord_data)); }
         }
+        settings_write_coord_data(int_value,coord_data);
+        // Update system coordinate system if currently active.
+        if (gc.coord_select == int_value) { memcpy(gc.coord_system,coord_data,sizeof(coord_data)); }
       }
       axis_words = 0; // Axis words used. Lock out from motion modes by clearing flags.
       break;
@@ -328,18 +329,22 @@ uint8_t gc_execute_line(char *line)
       }
       // Retreive G28/30 go-home position data (in machine coordinates) from EEPROM
       float coord_data[N_AXIS];
-      uint8_t home_select = SETTING_INDEX_G28;
-      if (non_modal_action == NON_MODAL_GO_HOME_1) { home_select = SETTING_INDEX_G30; }
-      if (!settings_read_coord_data(home_select,coord_data)) { return(STATUS_SETTING_READ_FAIL); }
+      if (non_modal_action == NON_MODAL_GO_HOME_1) { 
+        if (!settings_read_coord_data(SETTING_INDEX_G30 ,coord_data)) { return(STATUS_SETTING_READ_FAIL); }     
+      } else {
+        if (!settings_read_coord_data(SETTING_INDEX_G28 ,coord_data)) { return(STATUS_SETTING_READ_FAIL); }     
+      }      
       mc_line(coord_data[X_AXIS], coord_data[Y_AXIS], coord_data[Z_AXIS], settings.default_seek_rate, false); 
       memcpy(gc.position, coord_data, sizeof(coord_data)); // gc.position[] = coord_data[];
       axis_words = 0; // Axis words used. Lock out from motion modes by clearing flags.
       break;
     case NON_MODAL_SET_HOME_0: case NON_MODAL_SET_HOME_1:
-      home_select = SETTING_INDEX_G28;
-      if (non_modal_action == NON_MODAL_SET_HOME_1) { home_select = SETTING_INDEX_G30; }
-      settings_write_coord_data(home_select,gc.position);
-      break;
+      if (non_modal_action == NON_MODAL_SET_HOME_1) { 
+        settings_write_coord_data(SETTING_INDEX_G30,gc.position);
+      } else {
+        settings_write_coord_data(SETTING_INDEX_G28,gc.position);
+      }
+      break;    
     case NON_MODAL_SET_COORDINATE_OFFSET:
       if (!axis_words) { // No axis words
         FAIL(STATUS_INVALID_STATEMENT);
