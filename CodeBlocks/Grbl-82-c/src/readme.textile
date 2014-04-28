@@ -1,0 +1,13 @@
+//------------------------------------------------------------------------------
+These versions 0.8xx are adaptation of "Mega2560-grbl-0.81" work with Arduino-xxx
+
+
+v0.82
+    - is an adaptation of “Mega2560-grbl-0.81” work with Arduino-xxx.
+    - correcting wrong sized tables in limits.c, main.c, nuts_bolts_h, settings.c
+    - on a proposal from DavidLQuick modifcation of protocol.c
+
+v0.81
+    - is a copy of an old website disappeared Sept. 19, 2013
+        https://github.com/EliteEng/grbl
+       who recently reappeared in but with a copy of official Grbl-0.8c .
