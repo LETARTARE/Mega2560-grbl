@@ -51,7 +51,7 @@ void spindle_stop()
     SPINDLE_ENABLE_PORT |= (1<<SPINDLE_ENABLE_BIT);
 #endif
 
-#if SPINDLE_DIRECTION_ACTIVE == 1
+#if SPINDLE_DIRECTION_ACTIVE == 0
         // Set pin to high to run.
     SPINDLE_DIRECTION_PORT |= (1<<SPINDLE_DIRECTION_BIT);
 #else
@@ -61,7 +61,7 @@ void spindle_stop()
 /// <---
 }
 
-void spindle_run(int8_t direction, uint16_t rpm) 
+void spindle_run(int8_t direction, uint16_t rpm)
 {
   if (direction != current_direction) {
     plan_synchronize();
@@ -97,7 +97,7 @@ void spindle_run(int8_t direction, uint16_t rpm)
 ///<---
     }
     else {
-      spindle_stop();     
+      spindle_stop();
     }
     current_direction = direction;
   }
@@ -125,5 +125,5 @@ if (settings.spindle_pwm == 1) {
     TCCR4B = (1<<CS41); //set prescaler to 8
     OCR4A = settings.default_spindle / settings.max_spindle * 1023;
   }
-}     
+}
 }
