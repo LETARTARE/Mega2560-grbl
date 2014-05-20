@@ -1,6 +1,7 @@
 //------------------------------------------------------------------------------
 These versions 0.8xx are adaptation of "Mega2560-grbl-0.81" work with Arduino-xxx
 
+
 v0.845
 	- choice of fourth axis in the "defaults.h" file :
 		- linear 	: U or V or W

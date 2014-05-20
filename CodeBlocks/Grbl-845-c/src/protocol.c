@@ -63,9 +63,10 @@ static void status_message(int status_code)
 		printPgmString(PSTR("Invalid command\r\n"));
 		break;
 /// 843 : verify limit axis A
-	  case STATUS_BAD_NUMBER_DEGREE:
-		printPgmString(PSTR("Bad deggree value [-360..360] \r\n"));
-		break;
+/// removing this absurd limit !
+	//  case STATUS_BAD_NUMBER_DEGREE:
+	//	printPgmString(PSTR("Bad deggree value [-360..360] \r\n"));
+	//	break;
 /// <--
       default:
 		printInteger(status_code);

@@ -46,7 +46,7 @@ modified linkeur : 'avr-g++.exe' -> 'avr-gcc.exe']]>
 				</MakeCommands>
 			</Target>
 			<Target title="Debug">
-				<Option output="bin/Debug/interprete.elf" prefix_auto="1" extension_auto="0" />
+				<Option output="bin/Debug/grbl845.elf" prefix_auto="1" extension_auto="0" />
 				<Option working_dir="bin/Debug" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
@@ -105,20 +105,26 @@ modified linkeur : 'avr-g++.exe' -> 'avr-gcc.exe']]>
 		<Unit filename="infos/grbl845-c.his">
 			<Option target="info" />
 		</Unit>
+		<Unit filename="infos/para.txt">
+			<Option target="info" />
+		</Unit>
 		<Unit filename="infos/pinmapping.txt">
 			<Option target="info" />
-			<Option target="Release" />
 		</Unit>
 		<Unit filename="infos/resources.txt">
-			<Option target="Release" />
 			<Option target="info" />
 		</Unit>
 		<Unit filename="infos/structure.txt">
 			<Option target="info" />
-			<Option target="Release" />
 		</Unit>
-		<Unit filename="src/Change.log" />
-		<Unit filename="src/Makefile" />
+		<Unit filename="src/Change.log">
+			<Option target="Debug" />
+			<Option target="info" />
+		</Unit>
+		<Unit filename="src/Makefile">
+			<Option target="Debug" />
+			<Option target="info" />
+		</Unit>
 		<Unit filename="src/config.h">
 			<Option target="Release" />
 			<Option target="Debug" />
@@ -222,8 +228,8 @@ modified linkeur : 'avr-g++.exe' -> 'avr-gcc.exe']]>
 			<Option target="Debug" />
 		</Unit>
 		<Unit filename="src/readme.textile">
-			<Option target="Release" />
 			<Option target="Debug" />
+			<Option target="info" />
 		</Unit>
 		<Unit filename="src/report.c">
 			<Option compilerVar="CC" />
