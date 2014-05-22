@@ -2,7 +2,7 @@
 
 Grbl with Code::Blocks
 
-This directory 'devGrbl\CodeBlocks' contains the last versions  April 28, 2014
+This directory 'devGrbl\CodeBlocks' contains the last versions  May 22, 2014
 
 ================================================================================
 
@@ -14,9 +14,11 @@ A- OFFICIAL VERSIONS updated from the site Grbl : 3 axes
 
 A1- Grbl-8cUno-c       : grbl-0.8c for Uno328p 115200 bauds  3 axes
 
-A2- Grbl-9dMega2560-c  : grbl-0.9d for Mega2560 115200 bauds  3 axss
+A2- Grbl-9dMega2560-c  : grbl-0.9d for Mega2560 115200 bauds  3 axes
 
-A3- Grbl-9dUno-c       : grbl-0.9d for Uno328p 115200 bauds  3 axss
+A3- Grbl-9dUno-c       : grbl-0.9d for Uno328p 115200 bauds  3 axes
+
+A4- Grbl-8cMega2560-c  : grbl-0.8c for Mega2560 115200 bauds  3 axes
 
 ================================================================================
 
@@ -58,11 +60,11 @@ B6- Grbl-845-c  : grbl-0.845 for Mega2560 57600 bauds  4 axes  X, Y, Z, T
                 
                 - with T in [A, B, C, U, V, W]
                 - rotary (A, B, C) or linear (U, V, W)
-                - use "GrbController-3.6"
+                - use "GrbController-3.6-1" 
 
 
-================================================================================
 To interact with Grbl 4 axes from  "https://github.com/zapmaker/GrblHoming"
+================================================================================
 
 For any problem use "issues"
 
