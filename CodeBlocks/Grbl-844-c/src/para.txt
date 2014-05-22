@@ -1,0 +1,27 @@
+/// grbl-844  02-05-2014
+Mega2560
+Grbl 0.844 -> 4 axes (X, Y, Z, A)
+'$' to dump current settings
+ok
+$VERSION = 0.844 -> 4 axes (X, Y, Z, A)
+$0 = 100.00 (steps/mm x)
+$1 = 100.00 (steps/mm y)
+$2 = 100.00 (steps/mm z)
+$3 = 0.10 (steps/deg. a)
+$4 = 214 (microseconds step pulse)
+$5 = -17432.00 (mm/min default feed rate)
+$6 = 0.00 (mm/min default seek rate)
+$7 = 0.00 (mm/arc segment)
+$8 = 1 (step port invert mask. binary = 00000001)
+$9 = 0 (step port invert mask limit. binary = 00000000)
+$10 = 74.68 (acceleration in mm/sec^2)
+$11 = 0.05 (cornering junction deviation in mm)
+$12 = 0 (PWM on Spindle: 0 = disabled, 1 = enabled)
+$13 = 300.00 (default spindle speed in RPM)
+$14 = 1000.00 (maximum spindle speed in RPM)
+$1000 = 0 (steppers: 0 = disabled, 1 = enabled)
+
+
+// defaults.h
+
+#endif
