@@ -20,6 +20,10 @@ A3- Grbl-9dUno-c       : grbl-0.9d for Uno328p 115200 bauds  3 axes
 
 A4- Grbl-8cMega2560-c  : grbl-0.8c for Mega2560 115200 bauds  3 axes
 
+A5- Grbl-9eMega2560-c  : grbl-0.9e for Mega2560 115200 bauds  3 axes
+
+A6- Grbl-8eUno-c       : grbl-0.9e for Uno328p 115200 bauds  3 axes
+
 ================================================================================
 
 B- UNOFFICIAL VERSION from the old version 0.81 : 4 axes for MEGA2560
