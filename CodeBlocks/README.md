@@ -67,7 +67,7 @@ B6- Grbl-845-c  : grbl-0.845 for Mega2560 57600 bauds  4 axes  X, Y, Z, T
                 - use "GrbController-3.6-1"
 
 To interact with Grbl 4 axes from  "https://github.com/zapmaker/GrblHoming"
-================================================================================
+
 
 B7- Grbl-8c1-c  : grbl-0.8c1 for Mega2560 57600 bauds  4 axes  X, Y, Z, T
 
