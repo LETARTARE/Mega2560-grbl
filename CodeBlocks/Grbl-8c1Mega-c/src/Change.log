@@ -1,0 +1,66 @@
+Change.log
+
+
+//------------------------------------------------------------------------------
+<<== 0.8c1  May 15, 2014
+
+- 4 axes,  Mega2560, different pinout of 0.8c
+
+Modified files:
+- config.h
+- defaults.h
+- gcode.*
+- limits.c
+- motion_control.*
+- nuts_bolts.*,
+- pin_map.h
+- planner.*
+- protocol.h
+- report.*
+- settings.c
+
+- The modified files lines are marked '/// 8c1'
+
+==>> 0.8c1
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+<<== 0.8c0  May 12, 2014
+
+- 3 axes with Mega2560  pinout 0.8c
+
+Modified files:
+- config.h
+- gcode.*
+- limits.c
+- pin_map.h
+- planner.*
+- protocol.h
+- report.c
+- settings.*
+
+- The modified files lines are marked '/// 8c0'
+
+==>> 0.8c0
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+<<== 0.8c  May 04, 2014
+
+- 3 axes  with Mega2560  pinout 0.8c
+
+Modified files:
+- config.h
+	- #define BAUD_RATE 9600 -> 57600
+	- comment // #define PIN_MAP_ARDUINO_UNO
+	- #define PIN_MAP_ARDUINO_MEGA_2560
+- pin_map.h
+	- comment 	// #define BLOCK_BUFFER_SIZE 36
+	- comment 	// #define LINE_BUFFER_SIZE 100
+- planner.h
+	- #define BLOCK_BUFFER_SIZE 18  -> 36
+- protocol.h
+	- #define LINE_BUFFER_SIZE 70   -> 100
+
+==>> 0.8c
+//------------------------------------------------------------------------------
