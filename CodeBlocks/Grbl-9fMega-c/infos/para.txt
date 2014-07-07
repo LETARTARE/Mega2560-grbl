@@ -1,0 +1,54 @@
+/// grbl845  02-05-2014
+$VERSION = 0.845 (X, Y, Z, A)
+$0 = 50.00 (steps/mm x)
+$1 = 50.00 (steps/mm y)
+$2 = 50.00 (steps/mm z)
+$3 = 50.00 (steps/deg. a)
+$4 = 10 (microseconds step pulse)
+$5 = 750.00 (mm/min default feed rate)
+$6 = 1500.00 (mm/min default seek rate)
+$7 = 0.10 (mm/arc segment)
+$8 = 85 (step port invert mask. binary = 01010101)
+$9 = 0 (step port invert mask limit. binary = 00000000)
+$10 = 75.00 (acceleration in mm/sec^2)
+$11 = 0.05 (cornering junction deviation in mm)
+$12 = 0 (PWM on Spindle: 0 = disabled, 1 = enabled)
+$13 = 300.00 (default spindle speed in RPM)
+$14 = 1000.00 (maximum spindle speed in RPM)
+$1000 = 0 (steppers: 0 = disabled, 1 = enabled)
+
+// defaults.h
+#ifdef DEFAULTS_LETARTARE
+// Grbl generic default settings. Should work across different machines.
+  #define DEFAULT_X_STEPS_PER_MM (USER_STEP_MM*USER_MICROSTEPS) //  -> 1 µstep = 0.01 mm
+  #define DEFAULT_Y_STEPS_PER_MM (USER_STEP_MM*USER_MICROSTEPS)
+  #define DEFAULT_Z_STEPS_PER_MM (USER_STEP_MM*USER_MICROSTEPS)
+/// =====> 845  :  T in  U, if A, B, C -> mm = degree
+#define DEFAULT_T_STEPS_PER_MM (USER_STEP_MM*USER_MICROSTEPS)
+  // user values
+  // calculated value Grbl = ratio_table*step_per_revolution/360
+  #define USER_TABLE   ((USER_RATIO_TABLE*USER_STEP_PER_REVOLUTION)/360.0)
+  // STEPS_PER_DEGREE = (ratio_table*step_per_revolution/360)*MICROSTEPS)
+  // µstep/degree   1 µstep = 0,01 °
+  #define DEFAULT_T_STEPS_PER_DEGREE (USER_TABLE*USER_MICROSTEPS)
+/// <=====
+
+  #define DEFAULT_STEP_PULSE_MICROSECONDS 10
+  #define DEFAULT_MM_PER_ARC_SEGMENT 0.1
+  #define DEFAULT_RAPID_FEEDRATE 1500.0 // mm/min
+  #define DEFAULT_FEEDRATE 750.0
+  #define DEFAULT_ACCELERATION (DEFAULT_FEEDRATE*60*60/10.0) // 10 mm/min^2
+  #define DEFAULT_JUNCTION_DEVIATION 0.05 // mm
+// ==> 844 add  axis T
+  #define DEFAULT_STEPPING_INVERT_MASK ((1<<X_STEP_BIT)|(1<<Y_STEP_BIT)|(1<<Z_STEP_BIT)|(1<<T_STEP_BIT))
+
+  #define DEFAULT_LIMIT_INVERT_MASK 0 // active-low endstops by default
+  // #define DEFAULT_AUTO_START 1 // Boolean
+  #define SPINDLE_PWM 0 // Spindle PWM NOT Active as default
+  #define DEFAULT_SPINDLE_SPEED 300 // RPM
+  #define MAX_SPINDLE_SPEED 1000 // RPM
+// <==
+
+/// ...
+
+#endif
