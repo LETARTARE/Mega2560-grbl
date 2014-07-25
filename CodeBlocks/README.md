@@ -80,8 +80,17 @@ B7- Grbl-8c1-c  : grbl-0.8c1 for Mega2560 57600 bauds  4 axes  X, Y, Z, T
                 - it's official 0.8c + ...
                 - with T in [A, B, C, U, V, W]
                 - rotary (A, B, C) or linear (U, V, W)
-                - use "GrbController-3.6-1-T1"
+                - use "GrbController-3.6-1-T1.."
                  https://github.com/LETARTARE/GrblHoming/tree/Letartare/GC-3.6.1-T1
+
+B8- Grbl-8c2-c  : grbl-0.8c1 for Mega2560 57600 bauds  4 axes  X, Y, Z, T
+
+                - it's official 0.8c + différent pinout for 4 axes
+                - with T in [A, B, C, U, V, W]
+                - rotary (A, B, C) or linear (U, V, W)
+                - use "GrbController-3.6-1-T1..T4"
+                 https://github.com/LETARTARE/GrblHoming/tree/Letartare/GC-3.6.1-T1..T4
+
 
 ================================================================================
 
