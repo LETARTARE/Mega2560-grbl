@@ -2,7 +2,7 @@
 
 Grbl with Code::Blocks
 
-This directory 'devGrbl\CodeBlocks' contains the last versions  June 1, 2014
+This directory 'devGrbl\CodeBlocks' contains the last versions  July 22, 2014
 
 ================================================================================
 
@@ -24,11 +24,11 @@ A5- Grbl-9eMega2560-c  : grbl-0.9e for Mega2560 115200 bauds  3 axes  dev !!
 
 A6- Grbl-9eUno-c       : grbl-0.9e for Uno328p 115200 bauds  3 axes   dev !!
 
-	NEW
+	NEW 
 
-A7- Grbl-9fUno-c       : grbl-0.9f for Uno328p 115200 bauds  3 axes   dev !!
+A7- Grbl-9fUno-c       : grbl-0.9f for Uno328p 115200 bauds  3 axes   edge !!
 
-A8- Grbl-9fMega2560-c  : grbl-0.9f for Mega2560 115200 bauds  3 axes  dev !!
+A8- Grbl-9fMega2560-c  : grbl-0.9f for Mega2560 115200 bauds  3 axes  edge !!
 
 ================================================================================
 
