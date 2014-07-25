@@ -49,39 +49,4 @@ v0.8c2   June 06, 2014
 	- The tests were performed using "GrblController-3.6.1-T1" after connection,
 	  paired with the fourth axis Grbl
 
-
-//------------------------------------------------------------------------------
-
-v0.8c1	 May 15, 2014
-
-	- Choice of fourth axis in the "config.h" file :
-		- linear 	: U or V or W
-		- rotary 	: A or B or C
-
-	- Pinout in 'pin_map.h' for 'MEGA2560'
-		- X_STEP_BIT  		Pin 22
-		- Y_STEP_BIT  		Pin 24
-		- Z_STEP_BIT  		Pin 26
-		- T_STEP_BIT   		Pin 28
-
-		- X_DIRECTION_BIT	Pin 23
-		- Y_DIRECTION_BIT   Pin 25
-		- Z_DIRECTION_BIT	Pin 27
-		- T_DIRECTION_BIT  	Pin 29
-
-	- The text provided at initialization, where T in [A, B, C, U, V, W]
-		----------------------------
-		MEGA2560with 4 axes (X, Y, C, T)
-		Grbl 0.8c1
-		"$" to dump current settings
-		----------------------------
-
-	- Files are changed from '0.8c', changed lines are marked '/// 8c1'
-		- config_h, defaults.h, pin_map.h
-		- gcode.*, limits.c, motion_control.*, nuts_bolts.*, planner.*,
-		  protocol.h, report.*, stepper.c
-
-	- The tests were performed using "GrblController-3.6.1-T1" after connection,
-	  paired with the fourth axis Grbl
-
 //------------------------------------------------------------------------------
