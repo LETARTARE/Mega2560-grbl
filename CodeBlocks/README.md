@@ -2,7 +2,7 @@
 
 Grbl with Code::Blocks
 
-This directory 'devGrbl\CodeBlocks' contains the last versions  July 22, 2014
+This directory 'devGrbl\CodeBlocks' contains the last versions  July 29, 2014
 
 ================================================================================
 
