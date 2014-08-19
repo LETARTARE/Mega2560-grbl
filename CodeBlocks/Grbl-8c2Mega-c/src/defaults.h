@@ -55,7 +55,7 @@
 	#define AXIS_B   8
 	#define AXIS_C   9
 	// rotary axis
-	#define AXIS_T 	AXIS_A  /// ==> You must choose your rotary fourth axis  <==
+	#define AXIS_T 	AXIS_C  /// ==> You must choose your rotary fourth axis  <==
  #else
 	/// -> (X, Y, Z)
 	#error "The macro "AXIS_T" is not initialized"

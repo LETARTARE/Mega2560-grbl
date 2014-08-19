@@ -44,7 +44,8 @@
 #include "coolant_control.h"
 
 /// 8c1
-#include "config.h"	/// AXIS_T_TYPE
+//#include "config.h"	/// AXIS_T_TYPE
+#include "defaults.h"
 //  the axes  -> GRBL_AXIS
 #if (AXIS_T_TYPE == LINEAR)
 	#if AXIS_T == AXIS_U

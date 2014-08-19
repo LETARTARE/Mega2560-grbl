@@ -8,6 +8,8 @@ This directory 'devGrbl\CodeBlocks' contains the last versions  July 29, 2014
 
 These are projects Code::Block to build Grbl-xxx
 
+August 19, 2014 : Grbl-8c1-c and Grbl-8c2-c -> BUG FIXED FOR using V,W or B, C
+
 ================================================================================
 
 A- OFFICIAL VERSIONS updated from the site Grbl : 3 axes
@@ -82,6 +84,7 @@ To interact with Grbl 4 axes from  "https://github.com/zapmaker/GrblHoming"
 
 
 B7- Grbl-8c1-c  : grbl-0.8c1 for Mega2560 57600 bauds  4 axes  X, Y, Z, T
+	August 19, 2014 : BUG FIXEDusing V,W or B, C
 
                 - it's official 0.8c + ...
                 - with T in [A, B, C, U, V, W]
@@ -90,6 +93,7 @@ B7- Grbl-8c1-c  : grbl-0.8c1 for Mega2560 57600 bauds  4 axes  X, Y, Z, T
                  https://github.com/LETARTARE/GrblHoming/tree/Letartare/GC-3.6.1-T1
 
 B8- Grbl-8c2-c  : grbl-0.8c1 for Mega2560 57600 bauds  4 axes  X, Y, Z, T
+	August 19, 2014 : BUG FIXEDusing V,W or B, C
 
                 - it's official 0.8c + différent pinout for 4 axes
                 - with T in [A, B, C, U, V, W]
